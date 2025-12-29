@@ -1,7 +1,4 @@
-trait MyIterator {
-    type Item;
-    fn next(&mut self) -> Option<Self::Item>;
-}
+use iter_sample::iter::MyIterator;
 
 struct Counter {
     count: usize,
@@ -46,24 +43,9 @@ impl MyIterator for RangeUsize {
     }
 }
 
-struct StdIter<T>(T);
-
-impl <T: MyIterator> Iterator for StdIter<T> {
-    type Item = T::Item;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        self.0.next()
-    }
-}
-
 fn main() {
     let mut range = RangeUsize::new(1, 4);
     while let Some(x) = range.next() {
         println!("Raw Range: {}", x);
-    }
-
-    let range_std = StdIter(RangeUsize::new(1, 4));
-    for x in range_std {
-        println!("StdIter: {}", x);
     }
 }
