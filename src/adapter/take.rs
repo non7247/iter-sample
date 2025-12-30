@@ -1,5 +1,6 @@
 use crate::iter::MyIterator;
 
+#[derive(Debug)]
 pub struct Take<I> {
     inner: I,
     remaining: usize,

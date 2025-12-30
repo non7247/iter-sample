@@ -155,4 +155,12 @@ fn main() {
 
     let last = RangeUsize::new(0, 10).skip(3).take(4).last();
     println!("[last] 0..10 skip(3).take(4) last => {:?}", last);
+
+    let vec: Vec<usize> = Counter::new()
+        .map(|x| x * 10)
+        .filter(|x| x % 4 == 0)
+        .skip(1)
+        .take(10)
+        .collect_vec();
+    println!("{vec:?}");
 }
