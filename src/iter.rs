@@ -1,6 +1,8 @@
 use std::ops;
 use crate::adapter::filter::Filter;
 use crate::adapter::map::Map;
+use crate::adapter::skip::Skip;
+use crate::adapter::take::Take;
 
 pub trait MyIterator {
     type Item;
@@ -91,6 +93,20 @@ pub trait MyIterator {
         Self: Sized,
     {
         Map::new(self, f)
+    }
+
+    fn skip(self, n: usize) -> Skip<Self>
+    where
+        Self: Sized,
+    {
+        Skip::new(self, n)
+    }
+
+    fn take(self, n: usize) -> Take<Self>
+    where
+        Self: Sized,
+    {
+        Take::new(self, n)
     }
 }
 

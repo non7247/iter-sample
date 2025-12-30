@@ -125,4 +125,34 @@ fn main() {
     println!("[filter+map+find] first (multiple of 7)+1 divisible by 5 => {:?}", found);
     let after = it.next();
     println!("[filter+map+find] then next() => {:?}", after);
+
+    let v = RangeUsize::new(0, 10).skip(3).collect_vec();
+    println!("[skip] 0..10 skip(3) => {:?}", v);
+
+    let v = RangeUsize::new(0, 10).take(4).collect_vec();
+    println!("[skip] 0..10 take(4) => {:?}", v);
+
+    let v = RangeUsize::new(0, 10).skip(3).take(4).collect_vec();
+    println!("[skip+take] 0..10 skip(3).take(4) => {:?}", v);
+
+    let v = RangeUsize::new(0, 10)
+        .take(7)
+        .skip(3)
+        .collect_vec();
+    println!("[take+skip] 0..10 take(7).skip(3) => {:?}", v);
+
+    let v = RangeUsize::new(0, 5).skip(100).collect_vec();
+    println!("[skip too much] 0..5 skip(100) => {:?}", v);
+
+    let v = RangeUsize::new(0, 5).take(0).collect_vec();
+    println!("[take 0] 0..5 take(0) => {:?}", v);
+
+    let s = RangeUsize::new(0, 10).skip(3).take(4).sum();
+    println!("[sum] 0..10 skip(3).take(4) sum => {}", s);
+
+    let n = RangeUsize::new(0, 10).skip(3).take(4).count();
+    println!("[count] 0..10 skip(3).take(4) count => {}", n);
+
+    let last = RangeUsize::new(0, 10).skip(3).take(4).last();
+    println!("[last] 0..10 skip(3).take(4) last => {:?}", last);
 }
