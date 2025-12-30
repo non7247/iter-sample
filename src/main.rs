@@ -98,4 +98,31 @@ fn main() {
     println!("[filter+nth] (0..20).filter(%5==0).nth(3) => {:?}", third);
     let next = it.next();
     println!("[filter+nth] then next() => {:?}", next);
+
+    print!("[filter+map] even in 0..10 then *10 =>");
+    RangeUsize::new(0, 10)
+        .filter(|x| *x % 2 == 0)
+        .map(|x| x * 10)
+        .for_each(|x| print!(" {}", x));
+    println!();
+
+    let v = RangeUsize::new(1, 21)
+        .filter(|x| *x % 3 == 0)
+        .map(|x| x * 100)
+        .collect_vec();
+    println!("[filter+map+collect_vec] multiples of 3 in 1..21 => {:?}", v);
+
+    let sum = RangeUsize::new(1, 11)
+        .filter(|x| *x % 2 == 1)
+        .map(|x| x * x)
+        .sum();
+    println!("[filter+map+sum] sum of odd squares in 1..11 => {}", sum);
+
+    let mut it = RangeUsize::new(1, 100)
+        .filter(|x| *x % 7 == 0)
+        .map(|x| x + 1);
+    let found = it.find(|x| *x % 5 == 0);
+    println!("[filter+map+find] first (multiple of 7)+1 divisible by 5 => {:?}", found);
+    let after = it.next();
+    println!("[filter+map+find] then next() => {:?}", after);
 }
