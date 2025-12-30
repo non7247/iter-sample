@@ -74,4 +74,28 @@ fn main() {
     println!("[find] first nonzero multiple of 7 in 0..20 => {:?}", found);
     let after = it.next();
     println!("[find] then next() => {:?}", after);
+
+    print!("[filter] even in 0..10 =>");
+    RangeUsize::new(0, 10)
+        .filter(|x| *x % 2 == 0)
+        .for_each(|x| print!(" {}", x));
+    println!();
+
+    let n = RangeUsize::new(0, 100).filter(|x| *x % 3 == 0).count();
+    println!("[filter+count] multiples of 3 in 0..100 => {}", n);
+
+    let last_even = RangeUsize::new(0, 10).filter(|x| *x % 2 == 0).last();
+    println!("[filter+last] last even in 0..10 => {:?}", last_even);
+
+    let sum_even = RangeUsize::new(1, 11).filter(|x| *x % 2 == 0).sum();
+    println!("[filter+fold] sum of evens in 1..11 => {}", sum_even);
+
+    let v = RangeUsize::new(0, 20).filter(|x| *x % 7 == 0).collect_vec();
+    println!("[filter+collect_vec] multiples of 7 in 0..20 => {:?}", v);
+
+    let mut it = RangeUsize::new(0, 20).filter(|x| *x % 5 == 0);
+    let third = it.nth(3);
+    println!("[filter+nth] (0..20).filter(%5==0).nth(3) => {:?}", third);
+    let next = it.next();
+    println!("[filter+nth] then next() => {:?}", next);
 }

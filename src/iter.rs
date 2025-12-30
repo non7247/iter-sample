@@ -1,4 +1,5 @@
 use std::ops;
+use crate::adapter::Filter;
 
 pub trait MyIterator {
     type Item;
@@ -73,6 +74,14 @@ pub trait MyIterator {
         Self: Sized,
     {
         self.fold(None, |_, x| Some(x))
+    }
+
+    fn filter<P>(self, predicate: P) -> Filter<Self, P>
+    where
+        P: FnMut(&Self::Item) -> bool,
+        Self: Sized,
+    {
+        Filter::new(self, predicate)
     }
 }
 
