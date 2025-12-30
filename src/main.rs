@@ -1,5 +1,6 @@
 use iter_sample::iter::MyIterator;
 
+#[derive(Debug)]
 struct Counter {
     count: usize,
 }
@@ -163,4 +164,19 @@ fn main() {
         .take(10)
         .collect_vec();
     println!("{vec:?}");
+
+    let iter = Counter::new();
+    println!("{iter:?}");
+
+    let iter = iter.skip(5);
+    println!("{iter:?}");
+
+    let iter = iter.map(|x| x * 2);
+    println!("{iter:?}");
+
+    let iter = iter.filter(|x| x % 4 == 0);
+    println!("{iter:#?}");
+
+    let iter = iter.take(3);
+    println!("{iter:#?}");
 }
